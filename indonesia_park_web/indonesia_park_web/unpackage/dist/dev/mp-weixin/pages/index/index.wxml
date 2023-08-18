@@ -1,1 +1,0 @@
-<view class="content"><view class="list-container"><view wx:for="{{a}}" wx:for-item="park" wx:key="c" class="item-box" bindtap="{{park.d}}"><text class="item-text">{{park.a}}</text><image class="img-box" src="{{park.b}}"></image></view><button class="more">更多</button></view></view>
