@@ -1,0 +1,33 @@
+.list-container {
+  background-color: white;
+  padding: 20rpx;
+}
+.list-container .more {
+  margin-top: 20rpx;
+}
+.item-box {
+  height: 100rpx;
+  background-color: #fff;
+  box-shadow: 0px 0.5rpx 4rpx rgba(0, 0, 0, 0.1);
+  padding: 30rpx;
+  position: relative;
+  overflow: hidden;
+  border-radius: 40rpx;
+  margin-top: 20rpx;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.item-box .img-box {
+  width: 200rpx;
+  border-radius: 30rpx;
+  height: 100%;
+  margin-left: 20rpx;
+}
+.item-box .item-text {
+  z-index: 1;
+  width: 60%;
+  flex-wrap: wrap;
+  display: flex;
+}
