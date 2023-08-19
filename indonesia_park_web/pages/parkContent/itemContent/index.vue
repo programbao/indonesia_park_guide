@@ -4,9 +4,14 @@
 			{{ itemData.categoryName || '--' }}
 		</view>
 		<view class="tag-box">
-			<view class="tab" v-for="tag in itemData.tags">
-				<view class="image-box">
-					<image :src="tag.image ? tag.image : '/static/tab-default.png'" mode=""></image>
+			<view 
+				:class="{ gray: tag && !tag.parkIds.includes(Number(park.id)) }"
+				class="tag"
+				@click="tagClick(tag, park)"
+				v-for="tag in itemData.tags">
+				<view class="image-box" :style="{background: color}">
+					<text class="i" :class="tag.icon"></text>
+					<!-- <image :src="tag.image ? tag.image : '/static/tab-default.png'" mode=""></image> -->
 				</view>
 				<view class="tabName">{{ tag.name }}</view>
 			</view>
@@ -16,7 +21,7 @@
 
 <script>
 	export default {
-		props: ["itemData"],
+		props: ["itemData", 'park', "color"],
 		// props: {
 		// 	itemData: {
 		// 		type: Object,
@@ -25,11 +30,13 @@
 		// },
 		data() {
 			return {
-
+				
 			}
 		},
 		methods: {
-
+			tagClick(tag, park) {
+				uni.setStorageSync('curTag', tag);
+			}
 		}
 	}
 </script>
@@ -55,8 +62,11 @@
 			grid-gap: 10px;
 			justify-items: center;
 			padding: 20upx 0 30upx;
-
-			.tab {
+			.gray {
+				filter: grayscale(1);
+				opacity: 0.5;
+			}
+			.tag {
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
@@ -67,9 +77,15 @@
 					display: flex;
 					justify-content: center;
 					align-items: center;
+					border-radius: 30%;
+					margin-bottom: 10upx;
 					image {
 						width: 50upx;
 						height: 50upx;
+					}
+					.i {
+						color: #fff;
+						font-size: 40upx;
 					}
 				}
 				

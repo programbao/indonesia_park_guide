@@ -26,7 +26,6 @@ public class TagsServiceImpl implements TagsService {
     public List<CategoryWithTags> getCategoriesWithTags() {
         List<Category> categories = categoryMapper.list();
         List<TagVO> tags = tagsMapper.getAllTags(); // 使用TagVO
-
         List<CategoryWithTags> result = new ArrayList<>();
         for (Category category : categories) {
             List<TagVO> categoryTags = tags.stream()

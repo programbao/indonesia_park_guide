@@ -1,3 +1,4 @@
+
 <script>
 	export default {
 		onLaunch: function() {
@@ -13,8 +14,10 @@
 </script>
 
 <style>
+	@import "/static/font/carbon.css";
+
 	/*每个页面公共css */
 	body {
-		background-color: #f9f8fe;
+		/* background-color: #f9f8fe; */
 	}
 </style>

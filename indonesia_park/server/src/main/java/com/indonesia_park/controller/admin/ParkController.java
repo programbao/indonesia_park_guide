@@ -40,4 +40,14 @@ public class ParkController {
         Park park = parkService.getById(id);
         return Result.success(park);
     }
+
+    /**
+     * 内容提示
+     */
+    @GetMapping("/contentTips")
+    public Result<String> contentTips() {
+        return Result.success("说明：信息来源来自小红书，贴吧，聊天微信群等渠道；仅供参考。<br>" +
+                "<view style='color: #e6a23c;'>期待您的投递内容到2962631411@qq.com<br/>" +
+                "能够帮助更多人了解各园区的**情况</view>");
+    }
 }

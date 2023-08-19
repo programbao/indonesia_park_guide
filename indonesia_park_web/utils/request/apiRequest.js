@@ -31,6 +31,19 @@ const game_id = userInfo.id
 		 }
 	 })
  }
+ /**
+  * 获取内容提示
+  */
+ export function getContentTips() {
+	 return apiGet('park/contentTips',{},token).then(res => {
+		 if(res.code === 0) {
+			 return false
+		 }
+		 if(res.code === 1) {
+			 return res.data
+		 }
+	 })
+ }
 // =======个人信息========
 /**
  * 获取个人信息

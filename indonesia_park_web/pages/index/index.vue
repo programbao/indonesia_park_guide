@@ -9,9 +9,10 @@
 				<!-- <image :src="park.image" mode="heightFix"></image> -->
 				
 			</view>
-			<button class="more">更多</button>
+			<button class="more" @click="visible = true">更多</button>
 			<!-- Add more item-box elements here -->
 		</view>
+		<tips-model v-model:visible="visible"></tips-model>
 	</view>
 </template>
 
@@ -23,7 +24,8 @@
 		data() {
 			return {
 				title: 'Hello',
-				parkList: []
+				parkList: [],
+				visible: false
 			}
 		},
 		onLoad() {},
@@ -34,6 +36,7 @@
 		},
 		methods: {
 			parkClick(park) {
+				uni.setStorageSync('curPark', park);
 				uni.navigateTo({
 					url: `/pages/parkContent/index?id=${park.id}&parkName=${park.name}`
 				});
@@ -48,6 +51,7 @@
 	.list-container {
 		background-color: white;
 		padding: 20upx;
+		min-height: 100%;
 		.more {
 			margin-top: 20upx;
 		}

@@ -5,6 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -17,4 +21,14 @@ public class TagVO implements Serializable {
     private String icon;
     private Integer sort;
     private Integer status;
+    private String parkIds;
+
+    public List<Integer> getParkIds() {
+        if (parkIds == null || parkIds.isEmpty()) {
+            return new ArrayList<>();
+        }
+        return Arrays.stream(parkIds.split(","))
+                .map(Integer::valueOf)
+                .collect(Collectors.toList());
+    }
 }
