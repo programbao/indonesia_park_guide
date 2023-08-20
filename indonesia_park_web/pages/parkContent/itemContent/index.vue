@@ -5,9 +5,9 @@
 		</view>
 		<view class="tag-box">
 			<view 
-				:class="{ gray: tag && !tag.parkIds.includes(Number(park.id)) }"
 				class="tag"
-				@click="tagClick(tag, park)"
+				:class="{ gray: isNoHasContent(tag) }"
+				@click="tagClick(tag, park, isNoHasContent(tag))"
 				v-for="tag in itemData.tags">
 				<view class="image-box" :style="{background: color}">
 					<text class="i" :class="tag.icon"></text>
@@ -21,21 +21,29 @@
 
 <script>
 	export default {
-		props: ["itemData", 'park', "color"],
-		// props: {
-		// 	itemData: {
-		// 		type: Object,
-		// 		default: () => { categoryName: '', tags: [] }
-		// 	}
-		// },
+		props: ["itemData", "park", "color"],
+		computed: {
+			isNoHasContent() {
+				return function (tag) {
+					return tag && !tag.parkIds.includes(Number(this.park.id));
+				}
+			}
+		},
 		data() {
 			return {
 				
 			}
 		},
 		methods: {
-			tagClick(tag, park) {
+			tagClick(tag, park, isNoHasContent) {
+				if (isNoHasContent) {
+					this.$emit('tagClick', isNoHasContent)
+					return
+				}
 				uni.setStorageSync('curTag', tag);
+				uni.navigateTo({
+					url: `/pages/articleDetails/articleDetails?id=${tag.id}`
+				});
 			}
 		}
 	}

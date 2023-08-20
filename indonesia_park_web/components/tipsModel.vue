@@ -1,17 +1,17 @@
 <template>
 	<view class="cu-dialog" v-show="modalVisible">
 		<view class="content">
-			<view class="cu-bar">
+			<view class="title-box">
 				<view class="title">补充/修正</view>
 				<view class="close" @click="handleClose">
-					<text class="i carbon:close"></text>
+					<text class="i carbon-close"></text>
 				</view>
 			</view>
 			<mp-html :content="contentTips" />
 			<view class="uni-textarea">
 				<textarea v-model="fbContent" />
 			</view>
-			<button type="primary" @click="submit">提交</button>
+			<button class="button" type="primary" @click="submit">提交</button>
 		</view>
 	</view>
 </template>
@@ -81,23 +81,24 @@
 			width: 80%;
 			border-radius: 30upx;
 			padding: 20upx;
-
-			.cu-bar {
+			.button {
+				background-color: #007aff;
+			}
+			.title-box {
 				height: 40upx;
 				line-height: 40upx;
 				text-align: center;
 				position: relative;
-				font-size: 30upx;
 				font-weight: 500;
-				font-size: 35upx;
-
+				font-size: 30upx;
+				margin-bottom: 10upx;
 				.close {
 					position: absolute;
 					width: 40upx;
 					height: 40upx;
 					right: 10upx;
 					top: 0upx;
-					font-size: 50upx;
+					font-size: 40upx;
 				}
 			}
 
@@ -107,11 +108,13 @@
 				border-radius: 10upx;
 
 				textarea {
+					padding: 20upx;
 					width: 100%;
 					// height: 100%;
-					font-size: 40upx;
+					font-size: 30upx;
 				}
 			}
+			
 		}
 
 	}

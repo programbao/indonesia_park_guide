@@ -13,6 +13,11 @@
 			<!-- Add more item-box elements here -->
 		</view>
 		<tips-model v-model:visible="visible"></tips-model>
+		<float-panel
+			:canSelect="true"
+			class="drawer-btn"
+			@navIndexClick="visible = true"
+		  />
 	</view>
 </template>
 
@@ -45,7 +50,7 @@
 	}
 </script>
 
-<style lang="less">
+<style scoped lang="less">
 	@item-box-size: 100upx;
 
 	.list-container {

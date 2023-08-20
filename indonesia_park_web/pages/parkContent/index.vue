@@ -1,7 +1,12 @@
 <template>
 	<view class="park-content">
 		<item-content :color="colors[index]" :park="park" :item-data="item"
-			v-for="(item, index) in items"></item-content>
+			v-for="(item, index) in items" @tagClick="tagClick"></item-content>
+		<tips-model v-model:visible="visible"></tips-model>
+		<float-panel
+			:canSelect="true"
+			@navIndexClick="visible = true"
+		  />
 	</view>
 </template>
 
@@ -18,6 +23,7 @@
 			return {
 				items: [],
 				park: {},
+				visible: false,
 				colors: [
 					"#a8b7fe",
 					"#f7ced6",
@@ -67,6 +73,11 @@
 					this.items = res.filter(item => item.tags.length)
 				}
 			})
+		},
+		methods: {
+			tagClick(isNoHasContent) {
+				if (isNoHasContent) this.visible = true
+			}
 		}
 	}
 </script>

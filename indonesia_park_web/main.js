@@ -16,9 +16,12 @@ app.$mount()
 // #ifdef VUE3
 import { createSSRApp } from 'vue'
 import tipsModel from './components/tipsModel.vue'
+import floatPanel from './components/floatPanel.vue'
+
 export function createApp() {
   const app = createSSRApp(App)
   app.component('tips-model',tipsModel)
+  app.component('float-panel',floatPanel)
   return {
     app
   }

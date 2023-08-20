@@ -15,6 +15,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/articleDetails/articleDetails",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
