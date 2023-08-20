@@ -110,4 +110,22 @@ CREATE TABLE
         PRIMARY KEY (`id`)
     ) ENGINE = InnoDB AUTO_INCREMENT = 23 DEFAULT CHARSET = utf8mb3 COLLATE = utf8_bin COMMENT = '内容文章';
 
+DROP TABLE IF EXISTS `feedback`;
+CREATE TABLE
+    `feedback` (
+        `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+        `park_id` bigint NULL COMMENT '产业园id',
+        `park_name` varchar(32) COLLATE utf8_bin DEFAULT NULL COMMENT '产业园名称',
+        `tag_id` bigint NULL COMMENT '标签id',
+        `tag_name` varchar(32) COLLATE utf8_bin DEFAULT NULL COMMENT '标签名称',
+        `feadback_content` MEDIUMTEXT CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '反馈内容html',
+        `sort` int NOT NULL DEFAULT '0' COMMENT '顺序',
+        `status` int DEFAULT NULL COMMENT '分类状态 0:禁用，1:启用',
+        `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+        `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+        `create_user` bigint DEFAULT NULL COMMENT '创建人',
+        `update_user` bigint DEFAULT NULL COMMENT '修改人',
+        PRIMARY KEY (`id`)
+    ) ENGINE = InnoDB AUTO_INCREMENT = 23 DEFAULT CHARSET = utf8mb3 COLLATE = utf8_bin COMMENT = '反馈表';
+
 # alter table park add column image varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '图片' after name ;
