@@ -44,6 +44,23 @@ const game_id = userInfo.id
 		 }
 	 })
  }
+ /**
+   * 添加反馈内容
+   * */ 
+ export function addFeedback(params) {
+ 	 return apiPost('addFeedback',params,token).then(res => {
+ 		 if(res.code === 0) {
+ 		 	return false
+ 		 }
+ 		 if(res.code === 1) {
+ 		 	return true
+ 		 }
+ 	 })
+ }
+ 
+ 
+ 
+ 
 // =======个人信息========
 /**
  * 获取个人信息

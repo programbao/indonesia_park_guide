@@ -18,14 +18,19 @@
 
 <script>
 	import {
-		getContentTips
+		getContentTips,
+		addFeedback
 	} from '@/utils/request/apiRequest.js'
 
 	import {
 		ref,
 		watch,
-		onMounted
+		onMounted,
+		getCurrentInstance
 	} from 'vue';
+	import {
+		onLoad
+	} from "@dcloudio/uni-app";
 	export default {
 		props: {
 			data: String,
@@ -48,16 +53,59 @@
 					modalVisible.value = val;
 				}
 			);
+			let curTag = uni.getStorageSync("curTag") || {}
+			let curPark = uni.getStorageSync("curPark") || {}
 			onMounted(() => {
 				getContentTips().then(res => {
 					contentTips.value = res
-				})
+				});
+				var pages = getCurrentPages();
+				var page = pages[pages.length - 1];
+				if ('pages/index/index' === page.route) {
+					curPark = {}
+					curTag = {}
+				} else if ('pages/parkContent/index' === page.route) {
+					curTag = {}
+				}
 			});
+			const submit = () => {
+				if (!fbContent.value) {
+					uni.showToast({
+						title: '不能为空',
+						icon: "error",
+						duration: 1000
+					});
+					return
+				}
+				addFeedback({
+					"parkId": curPark.id,
+					"parkName": curPark.name,
+					"tagId": curTag.id,
+					"tagName": curTag.name,
+					"feedbackContent": fbContent.value
+				}).then(res => {
+					if (res) {
+						uni.showToast({
+							title: '提交成功',
+							duration: 2000
+						});
+						modalVisible.value = false;
+						ctx.emit('update:visible', false);
+					} else {
+						uni.showToast({
+							title: '失败联系管理员',
+							icon: "error",
+							duration: 2000
+						});
+					}
+				})
+			};
 			return {
 				handleClose,
 				modalVisible,
 				contentTips,
-				fbContent
+				fbContent,
+				submit
 			};
 		}
 	}
@@ -81,9 +129,11 @@
 			width: 80%;
 			border-radius: 30upx;
 			padding: 20upx;
+
 			.button {
 				background-color: #007aff;
 			}
+
 			.title-box {
 				height: 40upx;
 				line-height: 40upx;
@@ -92,6 +142,7 @@
 				font-weight: 500;
 				font-size: 30upx;
 				margin-bottom: 10upx;
+
 				.close {
 					position: absolute;
 					width: 40upx;
@@ -114,7 +165,7 @@
 					font-size: 30upx;
 				}
 			}
-			
+
 		}
 
 	}
