@@ -58,7 +58,19 @@ const game_id = userInfo.id
  	 })
  }
  
- 
+ /**
+  * 获取文章内容
+  */
+ export function getArticle(params) {
+ 	 return apiGet('getArticle',params,token).then(res => {
+ 		 if(res.code === 0) {
+ 			 return false
+ 		 }
+ 		 if(res.code === 1) {
+ 			 return res.data
+ 		 }
+ 	 })
+ }
  
  
 // =======个人信息========
